@@ -41,11 +41,66 @@ public class Solution {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		System.out.println("Enter Array Length:");
 		int n = in.nextInt();
+		System.out.println("Enter Left Shift:");
 		int k = in.nextInt();
 		int a[] = new int[n];
 		for (int a_i = 0; a_i < n; a_i++) {
 			a[a_i] = in.nextInt();
 		}
+
+		/*
+		int[] b = simpleLeftRotation(a, n, k);
+		System.out.println(Arrays.toString(b));
+		*/
+		
+		int [] b = leftRotation(a, n, k);
+		System.out.println(Arrays.toString(b));
+	}
+
+	private static int[] leftRotation(int[] a, int size, int start) {
+		int [] b = new int[size];
+		int mid = start;
+		for (int i = 0; i < size; i++){
+			if (i < mid){
+				int iVal = a[i];
+				int midVal = a[mid];
+				a[i] = midVal;
+				a[mid] = iVal;
+			}
+			
+			if (mid < size-1){
+				mid++;
+			}
+		}
+		
+		
+		return a;
+	}
+
+	/**
+	 * this is by using the Array Collection to split the array into multiple sub-range.
+	 * @param a
+	 * @param n
+	 * @param k
+	 * @return
+	 */
+	private static int[] simpleLeftRotation(int[] a, int n, int k) {
+
+		int[] part1 = Arrays.copyOfRange(a, k, n);
+		int[] part2 = Arrays.copyOfRange(a, 0, k);
+		int[] b = new int[part1.length + part2.length];
+
+		for (int i = 0; i < part1.length; i++) {
+			b[i] = part1[i];
+		}
+
+		int part1Len = part1.length;
+		for (int i = 0; i < part2.length; i++) {
+			b[part1Len + i] = part2[i];
+		}
+
+		return b;
 	}
 }
