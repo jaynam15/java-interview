@@ -1,2 +1,6 @@
 RemoteSystemsTempFiles
 RemoteSystemsTempFiles/**
+.metadata
+.metadata/**
+.recommenders
+.recommenders/**
