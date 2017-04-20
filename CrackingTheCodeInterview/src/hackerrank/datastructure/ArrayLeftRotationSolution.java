@@ -1,4 +1,4 @@
-package hackerrank.datastructure.arrayrotation;
+package hackerrank.datastructure;
 
 /*
  * A left rotation operation on an array of size  shifts each of the array's elements  unit to the left. For example, if left rotations are performed on array , then the array would become .
@@ -37,11 +37,10 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class Solution {
+public class ArrayLeftRotationSolution {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		System.out.println("Enter Array Length:");
 		int n = in.nextInt();
 		System.out.println("Enter Left Shift:");
 		int k = in.nextInt();
@@ -50,16 +49,31 @@ public class Solution {
 			a[a_i] = in.nextInt();
 		}
 
-		/*
-		int[] b = simpleLeftRotation(a, n, k);
-		System.out.println(Arrays.toString(b));
-		*/
-		
 		int [] b = leftRotation(a, n, k);
-		System.out.println(Arrays.toString(b));
+		for (int i = 0; i < b.length; i++){
+			System.out.print(b[i] + " ");
+		}
 	}
 
-	private static int[] leftRotation(int[] a, int size, int start) {
+	
+	private static int[] leftRotation(int[]a, int size, int start){
+		int [] b = new int[size];
+		int startIndex = start;
+		int rightSize = size - start;
+		int leftSize = start;
+		int i = 0;
+		for (i = 0; i < rightSize; i++, startIndex++){
+			b[i] = a[startIndex];
+		}
+		
+		for (int j = 0; j < leftSize; j++, i++ ){
+			b[i] = a [j];
+		}
+		
+		return b;
+	}
+	
+	private static int[] singleLoopLeftRotation(int[] a, int size, int start) {
 		int [] b = new int[size];
 		int mid = start;
 		for (int i = 0; i < size; i++){
